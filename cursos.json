@@ -1,0 +1,46 @@
+[
+  {
+    "id": 1,
+    "titulo": "Desenvolvimento Web Full Stack",
+    "categoria": "Programação",
+    "vagasEsgotadas": false,
+    "instrutor": {
+      "nome": "Ana Silva",
+      "experiencia": "Senior Dev"
+    },
+    "modulos": ["HTML & CSS", "JavaScript Avançado", "Bancos de Dados"]
+  },
+  {
+    "id": 2,
+    "titulo": "UX/UI Design para Iniciantes",
+    "categoria": "Design",
+    "vagasEsgotadas": true,
+    "instrutor": {
+      "nome": "Carlos Souza",
+      "experiencia": "Lead Designer"
+    },
+    "modulos": ["Fundamentos do Design", "Prototipagem no Figma", "Testes de Usabilidade"]
+  },
+  {
+    "id": 3,
+    "titulo": "Banco de Dados e SQL moderno",
+    "categoria": "Programação",
+    "vagasEsgotadas": false,
+    "instrutor": {
+      "nome": "Ana Silva",
+      "experiencia": "Senior Dev"
+    },
+    "modulos": ["Modelagem Relacional", "Queries Avançadas", "Performance"]
+  },
+  {
+    "id": 4,
+    "titulo": "Marketing Digital e Growth Hacking",
+    "categoria": "Negócios",
+    "vagasEsgotadas": false,
+    "instrutor": {
+      "nome": "Mariana Costa",
+      "experiencia": "Growth Manager"
+    },
+    "modulos": ["SEO Avançado", "Tráfego Pago", "Análise de Métricas"]
+  }
+]

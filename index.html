@@ -1,25 +1,138 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
-
   <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
-  <title>Loja Virtual</title>
+  <title>Catálogo de Cursos</title>
 
-  <link rel="stylesheet" href="style.css">
+  <style>
 
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      font-family:Arial,sans-serif;
+      background:#111827;
+      color:white;
+      padding:30px;
+    }
+
+    h1{
+      text-align:center;
+      margin-bottom:30px;
+    }
+
+    .filtro{
+      display:flex;
+      justify-content:center;
+      margin-bottom:30px;
+    }
+
+    select{
+      padding:10px;
+      border:none;
+      border-radius:8px;
+      font-size:16px;
+      width:250px;
+    }
+
+    #container-cursos{
+      display:grid;
+      grid-template-columns:
+      repeat(auto-fit,minmax(300px,1fr));
+
+      gap:20px;
+    }
+
+    .card{
+      background:#1f2937;
+      padding:20px;
+      border-radius:15px;
+      transition:0.3s;
+      position:relative;
+    }
+
+    .card:hover{
+      transform:translateY(-5px);
+    }
+
+    .esgotado{
+      opacity:0.5;
+    }
+
+    .tag{
+      position:absolute;
+      top:15px;
+      right:15px;
+
+      background:red;
+      color:white;
+
+      padding:5px 10px;
+
+      border-radius:8px;
+
+      font-size:12px;
+      font-weight:bold;
+    }
+
+    h2{
+      margin-bottom:10px;
+      color:#60a5fa;
+    }
+
+    .categoria{
+      margin-bottom:10px;
+      font-weight:bold;
+    }
+
+    .instrutor{
+      margin-bottom:15px;
+    }
+
+    ul{
+      margin-top:10px;
+      padding-left:20px;
+    }
+
+    li{
+      margin-bottom:5px;
+    }
+
+  </style>
 </head>
-
 <body>
 
-  <h1>Loja Virtual</h1>
+  <h1>Catálogo de Cursos</h1>
 
-  <button id="btn">
-    Carregar Produtos
-  </button>
+  <div class="filtro">
 
-  <div id="container"></div>
+    <select id="filtro-categoria">
+
+      <option value="Todos">Todos</option>
+
+      <option value="Programação">
+        Programação
+      </option>
+
+      <option value="Design">
+        Design
+      </option>
+
+      <option value="Negócios">
+        Negócios
+      </option>
+
+    </select>
+
+  </div>
+
+  <div id="container-cursos"></div>
 
   <script src="script.js"></script>
 

@@ -1,36 +1,170 @@
-const botao = document.getElementById("btn");
+const container =
+document.getElementById(
+  "container-cursos"
+);
 
-const container = document.getElementById("container");
+const filtro =
+document.getElementById(
+  "filtro-categoria"
+);
 
-botao.addEventListener("click", () => {
+let cursos = [];
 
-  fetch("produtos.json")
+/* =========================
+   FETCH JSON
+========================= */
 
-    .then(resposta => resposta.json())
+fetch("./cursos.json")
 
-    .then(produtos => {
+.then(resposta => resposta.json())
 
-      container.innerHTML = "";
+.then(dados => {
 
-      produtos.forEach(produto => {
+  cursos = dados;
 
-        container.innerHTML += `
-        
-          <div class="card">
+  renderizarCursos(cursos);
 
-            <h2>${produto.nome}</h2>
+})
 
-            <p>Preço: R$ ${produto.preco}</p>
+.catch(erro => {
 
-            <p>Categoria: ${produto.categoria}</p>
-
-            <p>Estoque: ${produto.estoque}</p>
-
-          </div>
-
-        `;
-      });
-
-    });
+  console.log(
+    "Erro ao carregar JSON",
+    erro
+  );
 
 });
+
+/* =========================
+   RENDERIZAR CURSOS
+========================= */
+
+function renderizarCursos(lista){
+
+  container.innerHTML = "";
+
+  lista.forEach(curso => {
+
+    /* =========================
+       MAP + JOIN
+    ========================= */
+
+    const modulosHTML =
+    curso.modulos.map(modulo =>
+
+      `<li>${modulo}</li>`
+
+    ).join("");
+
+    /* =========================
+       CARD
+    ========================= */
+
+    const card =
+    document.createElement("div");
+
+    card.classList.add("card");
+
+    /* =========================
+       OPACIDADE ESGOTADO
+    ========================= */
+
+    if(curso.vagasEsgotadas){
+
+      card.classList.add(
+        "esgotado"
+      );
+
+    }
+
+    card.innerHTML = `
+
+      ${
+        curso.vagasEsgotadas
+        ?
+        `<div class="tag">
+          Inscrições Encerradas
+        </div>`
+        :
+        ""
+      }
+
+      <h2>${curso.titulo}</h2>
+
+      <p class="categoria">
+        Categoria:
+        ${curso.categoria}
+      </p>
+
+      <div class="instrutor">
+
+        <p>
+          <strong>Instrutor:</strong>
+          ${curso.instrutor.nome}
+        </p>
+
+        <p>
+          <strong>Experiência:</strong>
+          ${curso.instrutor.experiencia}
+        </p>
+
+      </div>
+
+      <h3>Módulos:</h3>
+
+      <ul>
+        ${modulosHTML}
+      </ul>
+
+    `;
+
+    container.appendChild(card);
+
+  });
+
+}
+
+/* =========================
+   FILTRO
+========================= */
+
+filtro.addEventListener(
+  "change",
+  () => {
+
+    const categoriaSelecionada =
+    filtro.value;
+
+    /* =========================
+       MOSTRAR TODOS
+    ========================= */
+
+    if(
+      categoriaSelecionada ===
+      "Todos"
+    ){
+
+      renderizarCursos(cursos);
+
+      return;
+
+    }
+
+    /* =========================
+       FILTER
+    ========================= */
+
+    const cursosFiltrados =
+    cursos.filter(curso =>
+
+      curso.categoria ===
+      categoriaSelecionada
+
+    );
+
+    renderizarCursos(
+      cursosFiltrados
+    );
+
+  }
+);
